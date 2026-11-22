@@ -1,0 +1,6 @@
+Salin (copy-paste) file gambar dari folder tema lama teman Anda ke dalam folder ini (assets/images/):
+1. logotanahlaut-clean.png  (Logo Kabupaten Tanah Laut)
+2. headerpemdes-clean.png   (Lambang header utama Desa Benua Tengah)
+3. jajaran.jpeg             (Foto jajaran perangkat desa)
+4. kkn.jpeg                 (Foto kegiatan/anggota KKN Politala 2026)
+5. logokemendesa.png        (Opsional: Logo Kementerian Desa PDTT)

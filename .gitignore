@@ -1,0 +1,21 @@
+# WordPress konfigurasi dan kredensial lokal
+wp-config.php
+
+# Data upload lokal
+wp-content/uploads/
+
+# Cache dan backup
+*.log
+*.sql
+*.sql.gz
+*.zip
+*.tar
+*.tar.gz
+backup/
+backups/
+cache/
+
+# File lokal OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
