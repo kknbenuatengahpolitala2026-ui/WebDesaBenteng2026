@@ -426,3 +426,7 @@ function dbt_anggaran_admin_column_content( $column, $post_id ) {
     }
 }
 add_action( 'manage_anggaran_desa_posts_custom_column', 'dbt_anggaran_admin_column_content', 10, 2 );
+
+// Sembunyikan Admin Bar dari tampilan publik dan tampilan depan.
+// Hak tambah, edit, dan hapus tetap hanya tersedia melalui /wp-admin bagi admin.
+add_filter( 'show_admin_bar', '__return_false' );
