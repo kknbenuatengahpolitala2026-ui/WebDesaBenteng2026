@@ -95,11 +95,6 @@ if ( $anggaran_query->have_posts() ) {
                    class="mt-5 inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-[#1a0d3d] text-xs font-extrabold px-5 py-3 rounded-xl shadow-lg transition-all">
                     Kelola Anggaran Desa
                 </a>
-            <?php else : ?>
-                <a href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>"
-                   class="mt-5 inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/15 text-white text-xs font-bold px-5 py-3 rounded-xl transition-all">
-                    Masuk Admin
-                </a>
             <?php endif; ?>
         </div>
     </header>
