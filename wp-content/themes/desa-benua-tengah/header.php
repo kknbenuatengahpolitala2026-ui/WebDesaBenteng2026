@@ -127,6 +127,23 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                     </svg>
                 </a>
+
+                <!-- Tombol Masuk Admin / Kelola Admin -->
+                <?php if ( is_user_logged_in() && current_user_can( 'edit_posts' ) ) : ?>
+                    <a href="<?php echo esc_url( admin_url() ); ?>" class="inline-flex items-center gap-1.5 border border-[#1a0d3d]/20 bg-purple-50 text-[#1a0d3d] hover:bg-purple-100 text-xs font-bold px-3.5 py-2.5 rounded-xl transition-all shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15.5A3.5 3.5 0 1012 8.5a3.5 3.5 0 000 7zm7-3.5a7 7 0 11-14 0 7 7 0 0114 0zM12 12h.01"></path>
+                        </svg>
+                        <span>Kelola</span>
+                    </a>
+                <?php else : ?>
+                    <a href="<?php echo esc_url( wp_login_url( home_url('/anggaran-desa') ) ); ?>" class="inline-flex items-center gap-1.5 border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 hover:text-[#1a0d3d] text-xs font-bold px-3.5 py-2.5 rounded-xl transition-all shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M15 12H3"></path>
+                        </svg>
+                        <span>Masuk Admin</span>
+                    </a>
+                <?php endif; ?>
             </div>
 
             <!-- Tombol Menu Mobile -->
@@ -153,6 +170,19 @@
                 <a href="https://linktr.ee/pemdesbenuatengah" target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-[#1a0d3d] hover:bg-[#261456] text-white font-bold py-2.5 rounded-xl">
                     Layanan Surat Online
                 </a>
+            </div>
+
+            <!-- Tombol Masuk Admin / Kelola Admin -->
+            <div class="pt-3 mt-2 border-t border-slate-100">
+                <?php if ( is_user_logged_in() && current_user_can( 'edit_posts' ) ) : ?>
+                    <a href="<?php echo esc_url( admin_url() ); ?>" class="block w-full text-center bg-purple-100 text-[#1a0d3d] font-bold py-2.5 rounded-xl mb-2">
+                        Kelola Admin
+                    </a>
+                <?php else : ?>
+                    <a href="<?php echo esc_url( wp_login_url( home_url('/anggaran-desa') ) ); ?>" class="block w-full text-center border border-slate-200 text-slate-700 font-bold py-2.5 rounded-xl mb-2">
+                        Masuk Admin
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </nav>
