@@ -349,6 +349,55 @@ function dbt_save_anggaran_desa_meta( $post_id ) {
 }
 add_action( 'save_post_anggaran_desa', 'dbt_save_anggaran_desa_meta' );
 
+// Validasi data anggaran sebelum record dipublikasikan
+function dbt_validate_anggaran_desa( $post_id, $post ) {
+    if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+        return;
+    }
+
+    if ( 'anggaran_desa' !== $post->post_type ) {
+        return;
+    }
+
+    $tahun  = absint( get_post_meta( $post_id, '_dbt_tahun_anggaran', true ) );
+    $status = get_post_meta( $post_id, '_dbt_status_anggaran', true );
+
+    if ( empty( $tahun ) || $tahun < 2015 || $tahun > 2099 ) {
+        update_post_meta( $post_id, '_dbt_tahun_anggaran', date( 'Y' ) );
+    }
+
+    $status_izin = array( 'APBDes Awal', 'APBDes Perubahan', 'Laporan Realisasi Akhir Tahun' );
+    if ( ! in_array( $status, $status_izin, true ) ) {
+        update_post_meta( $post_id, '_dbt_status_anggaran', 'APBDes Awal' );
+    }
+}
+add_action( 'save_post_anggaran_desa', 'dbt_validate_anggaran_desa', 20, 2 );
+
+// Tambahkan kolom administrasi yang mudah dipindai admin
+function dbt_anggaran_admin_sortable_columns( $columns ) {
+    $columns['tahun'] = 'tahun_anggaran';
+    $columns['status_doc'] = 'status_anggaran';
+    return $columns;
+}
+add_filter( 'manage_edit-anggaran_desa_sortable_columns', 'dbt_anggaran_admin_sortable_columns' );
+
+function dbt_anggaran_admin_sort_query( $query ) {
+    if ( ! is_admin() || ! $query->is_main_query() ) {
+        return;
+    }
+
+    if ( 'tahun_anggaran' === $query->get( 'orderby' ) ) {
+        $query->set( 'meta_key', '_dbt_tahun_anggaran' );
+        $query->set( 'orderby', 'meta_value_num' );
+    }
+
+    if ( 'status_anggaran' === $query->get( 'orderby' ) ) {
+        $query->set( 'meta_key', '_dbt_status_anggaran' );
+        $query->set( 'orderby', 'meta_value' );
+    }
+}
+add_action( 'pre_get_posts', 'dbt_anggaran_admin_sort_query' );
+
 // Rapikan Kolom Daftar Tabel di Dashboard Admin (Read View)
 function dbt_anggaran_admin_columns( $columns ) {
     return array(

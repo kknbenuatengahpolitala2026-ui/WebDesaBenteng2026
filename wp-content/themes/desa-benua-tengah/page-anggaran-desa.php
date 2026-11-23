@@ -89,6 +89,18 @@ if ( $anggaran_query->have_posts() ) {
             <span class="inline-block bg-white/10 border border-white/15 text-amber-400 text-xs font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-3">Akuntabilitas &amp; Keterbukaan Publik</span>
             <h1 class="text-3xl md:text-5xl font-extrabold uppercase tracking-tight mb-2">Transparansi Anggaran Desa</h1>
             <p class="text-slate-300 text-sm md:text-base max-w-2xl">Publikasi resmi infografis dan dokumen Anggaran Pendapatan dan Belanja Desa (APBDes) Benua Tengah per tahun anggaran</p>
+
+            <?php if ( is_user_logged_in() && current_user_can( 'edit_posts' ) ) : ?>
+                <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=anggaran_desa' ) ); ?>"
+                   class="mt-5 inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-[#1a0d3d] text-xs font-extrabold px-5 py-3 rounded-xl shadow-lg transition-all">
+                    Kelola Anggaran Desa
+                </a>
+            <?php else : ?>
+                <a href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>"
+                   class="mt-5 inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/15 text-white text-xs font-bold px-5 py-3 rounded-xl transition-all">
+                    Masuk Admin
+                </a>
+            <?php endif; ?>
         </div>
     </header>
 
