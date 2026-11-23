@@ -146,6 +146,17 @@
                 <?php endif; ?>
             </div>
 
+            <!-- Tombol Admin Langsung untuk Mobile -->
+            <?php if ( is_user_logged_in() && current_user_can( 'edit_posts' ) ) : ?>
+                <a href="<?php echo esc_url( admin_url() ); ?>" class="lg:hidden inline-flex items-center gap-1.5 border border-[#1a0d3d]/20 bg-purple-50 text-[#1a0d3d] text-[11px] font-bold px-2.5 py-2 rounded-xl shrink-0">
+                    Kelola
+                </a>
+            <?php else : ?>
+                <a href="<?php echo esc_url( wp_login_url( home_url('/anggaran-desa') ) ); ?>" class="lg:hidden inline-flex items-center gap-1.5 border border-slate-200 bg-white text-slate-700 text-[11px] font-bold px-2.5 py-2 rounded-xl shrink-0">
+                    Admin
+                </a>
+            <?php endif; ?>
+
             <!-- Tombol Menu Mobile -->
             <button id="bt-mobile-btn" type="button" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 shrink-0">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
